@@ -9,7 +9,7 @@ import java.util.Collection;
  */
 public interface OrderRepository {
 
-    Collection<Order> getAllOreders();
+    Collection<Order> getAllOrders();
     Collection<Order> getExecutedOrders();
     Collection<Order> getUnexecutedOrders();
 }
