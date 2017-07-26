@@ -5,6 +5,8 @@ import com.ordersserver.services.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+
 /**
  * Created by perestoronin on 25.07.2017.
  */
@@ -39,4 +41,22 @@ public class OrderController {
         orderService.delete(id);
     }
 
+
+    @GetMapping("/all")
+    @ResponseBody
+    public Collection<Order> getOrderById(){
+        return orderService.getAllOrders();
+    }
+
+    @GetMapping("/unexecuted")
+    @ResponseBody
+    public Collection<Order> getUnexecutedOrders(){
+        return orderService.getUnexecutedOrders();
+    }
+
+    @GetMapping("/executed")
+    @ResponseBody
+    public Collection<Order> getExecutedOrders(){
+        return orderService.getExecutedOrders();
+    }
 }
