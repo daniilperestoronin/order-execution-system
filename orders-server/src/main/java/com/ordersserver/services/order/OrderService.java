@@ -10,7 +10,7 @@ import java.util.Collection;
  */
 public interface OrderService {
 
-    void create(Order client);
+    void create(Order order);
     Order retrieve(Long id);
     void update(Order t);
     void delete(Long id);

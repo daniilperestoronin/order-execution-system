@@ -1,7 +1,9 @@
 package com.ordersserver.services.order.impl;
 
 import com.ordersserver.domainobjects.order.Order;
+import com.ordersserver.repository.order.OrderRepository;
 import com.ordersserver.services.order.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -11,38 +13,44 @@ import java.util.Collection;
  */
 @Service
 public class OrderServiceImpl implements OrderService{
+
+    @Autowired
+    OrderRepository orderRepository;
+
     @Override
-    public void create(Order client) {
+    public void create(Order order) {
+        orderRepository.create(order);
 
     }
 
     @Override
     public Order retrieve(Long id) {
-        return null;
+        return orderRepository.retrieve(id);
     }
 
     @Override
-    public void update(Order t) {
-
+    public void update(Order order) {
+        orderRepository.update(order);
     }
 
     @Override
     public void delete(Long id) {
+        orderRepository.delete(id);
 
     }
 
     @Override
     public Collection<Order> getAllOrders() {
-        return null;
+        return orderRepository.getAllOrders();
     }
 
     @Override
     public Collection<Order> getExecutedOrders() {
-        return null;
+        return orderRepository.getExecutedOrders();
     }
 
     @Override
     public Collection<Order> getUnexecutedOrders() {
-        return null;
+        return orderRepository.getUnexecutedOrders();
     }
 }
