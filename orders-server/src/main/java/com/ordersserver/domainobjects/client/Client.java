@@ -2,13 +2,25 @@ package com.ordersserver.domainobjects.client;
 
 import com.vividsolutions.jts.geom.Geometry;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
 /**
  * @author Perestoronin Daniil
  */
-public class Client {
+@Entity
+@Table(name = "clients")
+public class Client implements Serializable{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "client_type")
+    @Enumerated(EnumType.STRING)
     private ClientType clientType;
+    @OneToOne
+    @JoinColumn(name = "id_personal_information")
     private PersonalInformation personalInformation;
     private Geometry coordinates;
 

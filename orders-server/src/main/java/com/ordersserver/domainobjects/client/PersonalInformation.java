@@ -1,15 +1,28 @@
 package com.ordersserver.domainobjects.client;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
 /**
  * @author Perestoronin Daniil
  */
-public class PersonalInformation {
+@Entity
+@Table(name = "personal_information")
+public class PersonalInformation implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "middle_name")
     private String middleName;
+    @Column(name = "identifier")
     private String identifier;
+    @Column(name = "password")
     private String password;
 
     public PersonalInformation() {
