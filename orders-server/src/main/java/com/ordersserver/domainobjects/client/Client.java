@@ -22,6 +22,7 @@ public class Client implements Serializable{
     @OneToOne
     @JoinColumn(name = "id_personal_information")
     private PersonalInformation personalInformation;
+    @Column(columnDefinition = "coordinates")
     private Geometry coordinates;
 
     public Client() {
