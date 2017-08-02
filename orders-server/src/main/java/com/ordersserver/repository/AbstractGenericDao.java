@@ -12,12 +12,11 @@ import java.lang.reflect.ParameterizedType;
 /**
  * @author Perestoronin Daniil
  */
-@Transactional
-@Repository
+
 public class AbstractGenericDao<T, PK extends Serializable>
         implements GenericDao<T, PK> {
 
-    @PersistenceContext
+
     private EntityManager entityManager;
     private Class<T> entityClass;
 

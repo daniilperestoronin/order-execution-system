@@ -22,8 +22,8 @@ public class Client implements Serializable{
     @OneToOne
     @JoinColumn(name = "id_personal_information")
     private PersonalInformation personalInformation;
-    @Column(columnDefinition = "coordinates")
-    private Geometry coordinates;
+//    @Column(columnDefinition = "coordinates")
+//    private Geometry coordinates;
 
     public Client() {
     }
@@ -55,45 +55,6 @@ public class Client implements Serializable{
         return this;
     }
 
-    public Geometry getCoordinates() {
-        return coordinates;
-    }
 
-    public Client setCoordinates(Geometry coordinates) {
-        this.coordinates = coordinates;
-        return this;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Client client = (Client) o;
-
-        if (id != null ? !id.equals(client.id) : client.id != null) return false;
-        if (clientType != client.clientType) return false;
-        if (personalInformation != null ? !personalInformation.equals(client.personalInformation) : client.personalInformation != null)
-            return false;
-        return coordinates != null ? coordinates.equals(client.coordinates) : client.coordinates == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (clientType != null ? clientType.hashCode() : 0);
-        result = 31 * result + (personalInformation != null ? personalInformation.hashCode() : 0);
-        result = 31 * result + (coordinates != null ? coordinates.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", clientType=" + clientType +
-                ", personalInformation=" + personalInformation +
-                ", coordinates=" + coordinates +
-                '}';
-    }
 }

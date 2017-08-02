@@ -19,18 +19,18 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public void create(Order order) {
-        orderRepository.create(order);
+        orderRepository.save(order);
 
     }
 
     @Override
     public Order retrieve(Long id) {
-        return orderRepository.retrieve(id);
+        return orderRepository.findOne(id);
     }
 
     @Override
     public void update(Order order) {
-        orderRepository.update(order);
+        orderRepository.save(order);
     }
 
     @Override
@@ -41,16 +41,16 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public Collection<Order> getAllOrders() {
-        return orderRepository.getAllOrders();
+        return orderRepository.findAll();
     }
 
     @Override
     public Collection<Order> getExecutedOrders() {
-        return orderRepository.getExecutedOrders();
+        return orderRepository.findAll();
     }
 
     @Override
     public Collection<Order> getUnexecutedOrders() {
-        return orderRepository.getUnexecutedOrders();
+        return orderRepository.findAll();
     }
 }

@@ -12,10 +12,5 @@ import javax.transaction.Transactional;
  */
 @Transactional
 @Repository
-public class ClientRepositoryImpl extends AbstractGenericDao<Client,Long> implements ClientRepository {
-
-    @Override
-    public boolean isClientRegistered(Client client) {
-        return false;
-    }
+public class ClientRepositoryImpl {
 }

@@ -17,17 +17,17 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void create(Client client) {
-        clientRepository.create(client);
+        clientRepository.save(client);
     }
 
     @Override
     public Client retrieve(Long id) {
-        return clientRepository.retrieve(id);
+        return clientRepository.findOne(id);
     }
 
     @Override
     public void update(Client client) {
-        clientRepository.update(client);
+        clientRepository.save(client);
     }
 
     @Override
@@ -37,6 +37,6 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public boolean isClientRegistered(Client client) {
-        return clientRepository.isClientRegistered(client);
+        return true;
     }
 }

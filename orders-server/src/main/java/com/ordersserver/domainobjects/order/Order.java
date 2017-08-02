@@ -23,8 +23,6 @@ public class Order implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_executor")
     private Client executor;
-    @Column(name = "coordinates")
-    private Geometry coordinates;
     @Column(name = "address")
     private String address;
     @Column(name = "description")
@@ -57,15 +55,6 @@ public class Order implements Serializable {
 
     public Order setExecutor(Client executor) {
         this.executor = executor;
-        return this;
-    }
-
-    public Geometry getCoordinates() {
-        return coordinates;
-    }
-
-    public Order setCoordinates(Geometry coordinates) {
-        this.coordinates = coordinates;
         return this;
     }
 
