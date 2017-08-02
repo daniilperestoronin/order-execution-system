@@ -1,9 +1,9 @@
-package com.ordersserver.controllers.client;
+package com.ordersserver.controllers.order;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import com.ordersserver.controllers.client.ClientController;
 import com.ordersserver.domainobjects.client.Client;
-import com.ordersserver.services.client.ClientService;
+import com.ordersserver.domainobjects.order.Order;
+import com.ordersserver.services.order.OrderService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,27 +15,29 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Created by perestoronin on 02.08.2017.
  */
 @RunWith(SpringRunner.class)
-@WebMvcTest(ClientController.class)
-public class ClientControllerTest {
+@WebMvcTest(OrderController.class)
+public class OrderControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    private ClientService clientService;
+    private OrderService orderService;
 
     @Before
     public void setData(){
-        when(clientService.retrieve(anyLong())).thenReturn(new Client());
+        when(orderService.retrieve(anyLong())).thenReturn(new Order());
     }
 
     @Test
-    public void testGreetingClientById() throws Exception {
-        this.mockMvc.perform(get("/client/1")).andDo(print()).andExpect(status().isOk());
+    public void testGreetingOrderById() throws Exception {
+        this.mockMvc.perform(get("/order/1")).andDo(print()).andExpect(status().isOk());
     }
 }
