@@ -1,7 +1,5 @@
 package com.ordersserver.controllers.order;
 
-import com.ordersserver.controllers.client.ClientController;
-import com.ordersserver.domainobjects.client.Client;
 import com.ordersserver.domainobjects.order.Order;
 import com.ordersserver.services.order.OrderService;
 import org.junit.Before;
