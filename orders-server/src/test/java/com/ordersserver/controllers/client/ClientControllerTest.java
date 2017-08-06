@@ -41,7 +41,7 @@ public class ClientControllerTest {
     }
 
     @Test
-    public void testGreetingClientById() throws Exception {
+    public void testGeetingClientById() throws Exception {
         this.mockMvc.perform(get("/client/1"))
                 .andDo(print()).andExpect(status().isOk());
     }
