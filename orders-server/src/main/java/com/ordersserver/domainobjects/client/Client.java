@@ -4,6 +4,7 @@ import com.vividsolutions.jts.geom.Geometry;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * @author Perestoronin Daniil
@@ -19,8 +20,8 @@ public class Client implements Serializable{
     @Column(name = "client_type")
     @Enumerated(EnumType.STRING)
     private ClientType clientType;
-    @OneToOne
-    @JoinColumn(name = "id_personal_information")
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private PersonalInformation personalInformation;
 //    @Column(columnDefinition = "coordinates")
 //    private Geometry coordinates;
@@ -55,6 +56,18 @@ public class Client implements Serializable{
         return this;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return Objects.equals(id, client.id) &&
+                clientType == client.clientType &&
+                Objects.equals(personalInformation, client.personalInformation);
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, clientType, personalInformation);
+    }
 }

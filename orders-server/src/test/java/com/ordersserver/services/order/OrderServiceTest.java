@@ -1,6 +1,5 @@
 package com.ordersserver.services.order;
 
-import com.ordersserver.domainobjects.client.Client;
 import com.ordersserver.domainobjects.order.Order;
 import com.ordersserver.repository.order.OrderRepository;
 import org.junit.Before;
