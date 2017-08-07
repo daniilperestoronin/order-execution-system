@@ -5,6 +5,7 @@ import com.vividsolutions.jts.geom.Geometry;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * @author Perestoronin Daniil
@@ -74,5 +75,22 @@ public class Order implements Serializable {
     public Order setDescription(String description) {
         this.description = description;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(id, order.id) &&
+                Objects.equals(customer, order.customer) &&
+                Objects.equals(executor, order.executor) &&
+                Objects.equals(address, order.address) &&
+                Objects.equals(description, order.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, customer, executor, address, description);
     }
 }

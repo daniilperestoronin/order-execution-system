@@ -25,35 +25,33 @@ public class ClientRepositoryTest {
     private static Client client;
 
     @BeforeClass
-    public static void setData(){
-        PersonalInformation personalInformation = new PersonalInformation()
-                .setId(1L)
-                .setFirstName("testFirstName")
-                .setMiddleName("testMiddleName")
-                .setLastName("testLastName")
-                .setIdentifier("testIdentifier")
-                .setPassword("testPassword");
+    public static void setData() {
         client = new Client()
                 .setId(1L)
                 .setClientType(ClientType.CUSTOMER)
-                .setPersonalInformation(personalInformation);
+                .setPersonalInformation(new PersonalInformation()
+                        .setId(1L)
+                        .setFirstName("testFirstName")
+                        .setMiddleName("testMiddleName")
+                        .setLastName("testLastName")
+                        .setIdentifier("testIdentifier")
+                        .setPassword("testPassword"));
     }
 
     @Test
-    public void testSaveClient(){
-        assertEquals(clientRepository.save(client),client);
+    public void testSaveClient() {
+        assertEquals(clientRepository.save(client), client);
     }
 
     @Test
-    public void testFindClient(){
+    public void testFindClient() {
         clientRepository.save(client);
-        assertEquals(clientRepository.getOne(client.getId()),client);
+        assertEquals(clientRepository.getOne(client.getId()), client);
     }
 
     @Test
-    public void testDeleteClient(){
+    public void testDeleteClient() {
         clientRepository.save(client);
         clientRepository.delete(client.getId());
     }
-
 }
