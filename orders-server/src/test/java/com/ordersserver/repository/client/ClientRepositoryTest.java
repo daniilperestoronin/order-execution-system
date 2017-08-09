@@ -3,7 +3,6 @@ package com.ordersserver.repository.client;
 import com.ordersserver.domainobjects.client.Client;
 import com.ordersserver.domainobjects.client.ClientType;
 import com.ordersserver.domainobjects.client.PersonalInformation;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;

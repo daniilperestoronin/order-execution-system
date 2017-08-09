@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -27,9 +30,13 @@ public class OrderRepositoryTest {
     private ClientRepository clientRepository;
     private static Client customer, executor;
     private static Order order, executeOrder;
+    private static List<Order> allOrders, executedOrders, unexecutedOrders;
 
     @BeforeClass
     public static void setData() {
+        allOrders = new ArrayList<>();
+        executedOrders = new ArrayList<>();
+        unexecutedOrders = new ArrayList<>();
         customer = new Client()
                 .setId(1L)
                 .setClientType(ClientType.CUSTOMER)
@@ -61,6 +68,10 @@ public class OrderRepositoryTest {
                 .setExecutor(executor)
                 .setAddress("")
                 .setDescription("");
+        allOrders.add(order);
+        allOrders.add(executeOrder);
+        executedOrders.add(executeOrder);
+        unexecutedOrders.add(order);
     }
 
     @Test
@@ -86,4 +97,32 @@ public class OrderRepositoryTest {
         orderRepository.save(order);
         clientRepository.delete(order.getId());
     }
+
+    @Test
+    public void testFindAllOrders(){
+        clientRepository.save(customer);
+        clientRepository.save(executor);
+        orderRepository.save(order);
+        orderRepository.save(executeOrder);
+        assertEquals(allOrders,orderRepository.findAll());
+    }
+
+    @Test
+    public void testFindExecutedOrders(){
+        clientRepository.save(customer);
+        clientRepository.save(executor);
+        orderRepository.save(order);
+        orderRepository.save(executeOrder);
+        assertEquals(executedOrders,orderRepository.findExecutedOrders());
+    }
+
+    @Test
+    public void testFindUnexecutedOrders(){
+        clientRepository.save(customer);
+        clientRepository.save(executor);
+        orderRepository.save(order);
+        orderRepository.save(executeOrder);
+        assertEquals(unexecutedOrders,orderRepository.findUnexecutedOrders());
+    }
+
 }
