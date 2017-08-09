@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by perestoronin on 07.08.2017.
@@ -52,5 +53,12 @@ public class ClientRepositoryTest {
     public void testDeleteClient() {
         clientRepository.save(client);
         clientRepository.delete(client.getId());
+    }
+
+    @Test
+    public void testisClientRegister() {
+        clientRepository.save(client);
+        assertTrue(clientRepository.isClientRegistered(client.getPersonalInformation().getIdentifier(),
+                client.getPersonalInformation().getPassword()));
     }
 }
