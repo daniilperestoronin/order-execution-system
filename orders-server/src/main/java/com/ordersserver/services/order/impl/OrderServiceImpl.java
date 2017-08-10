@@ -20,7 +20,6 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public void create(Order order) {
         orderRepository.save(order);
-
     }
 
     @Override
@@ -46,11 +45,11 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public Collection<Order> getExecutedOrders() {
-        return orderRepository.findAll();
+        return orderRepository.findExecutedOrders();
     }
 
     @Override
     public Collection<Order> getUnexecutedOrders() {
-        return orderRepository.findAll();
+        return orderRepository.findUnexecutedOrders();
     }
 }

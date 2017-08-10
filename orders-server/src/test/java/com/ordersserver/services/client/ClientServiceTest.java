@@ -33,11 +33,11 @@ public class ClientServiceTest {
     @Before
     public void setData() {
         client = new Client()
-                .setId(1l)
+                .setId(1L)
                 .setClientType(ClientType.CUSTOMER)
                 .setPersonalInformation(
                         new PersonalInformation()
-                                .setId(1l)
+                                .setId(1L)
                                 .setFirstName("test")
                                 .setMiddleName("test")
                                 .setLastName("test")
@@ -61,7 +61,7 @@ public class ClientServiceTest {
 
     @Test
     public void testRetrieve() {
-        clientService.retrieve(1l);
+        clientService.retrieve(client.getId());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class ClientServiceTest {
 
     @Test
     public void testDelete() {
-        clientService.delete(1l);
+        clientService.delete(client.getId());
     }
 
     @Test
