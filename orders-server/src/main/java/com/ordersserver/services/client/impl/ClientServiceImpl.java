@@ -37,6 +37,8 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public boolean isClientRegistered(Client client) {
-        return true;
+        return clientRepository
+                .isClientRegistered(client.getPersonalInformation().getIdentifier(),
+                        client.getPersonalInformation().getPassword());
     }
 }

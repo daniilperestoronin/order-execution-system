@@ -1,8 +1,11 @@
 package com.ordersserver.services.client;
 
 import com.ordersserver.domainobjects.client.Client;
+import com.ordersserver.domainobjects.client.ClientType;
+import com.ordersserver.domainobjects.client.PersonalInformation;
 import com.ordersserver.repository.client.ClientRepository;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +31,27 @@ public class ClientServiceTest {
     private Client client;
 
     @Before
-    public void setData(){
-        when(clientRepository.findOne(anyLong())).thenReturn(new Client());
-        when(clientRepository.save(client)).thenReturn(client);
+    public void setData() {
+        client = new Client()
+                .setId(1l)
+                .setClientType(ClientType.CUSTOMER)
+                .setPersonalInformation(
+                        new PersonalInformation()
+                                .setId(1l)
+                                .setFirstName("test")
+                                .setMiddleName("test")
+                                .setLastName("test")
+                                .setIdentifier("test")
+                                .setPassword("test"));
+        when(clientRepository
+                .findOne(anyLong())).thenReturn(client);
+        when(clientRepository
+                .save(client)).thenReturn(client);
+        when(clientRepository
+                .isClientRegistered(client.getPersonalInformation().getIdentifier(),
+                        client.getPersonalInformation().getPassword()))
+                .thenReturn(true);
         doNothing().when(clientRepository).delete(anyLong());
-
-        client = new Client();
     }
 
     @Test
@@ -43,7 +61,7 @@ public class ClientServiceTest {
 
     @Test
     public void testRetrieve() {
-        clientService.retrieve(1L);
+        clientService.retrieve(1l);
     }
 
     @Test
@@ -53,7 +71,7 @@ public class ClientServiceTest {
 
     @Test
     public void testDelete() {
-        clientService.delete(1L);
+        clientService.delete(1l);
     }
 
     @Test
