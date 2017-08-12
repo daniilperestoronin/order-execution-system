@@ -71,8 +71,8 @@ public class ClientControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
-                .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.clientType", is(client.getClientType().toString())));
+                .andExpect(content()
+                        .string(new ObjectMapper().writeValueAsString(client)));
     }
 
     @Test
