@@ -1,7 +1,7 @@
 package com.ordersserver.domainobjects.order;
 
 import com.ordersserver.domainobjects.client.Client;
-import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.Point;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -28,6 +28,8 @@ public class Order implements Serializable {
     private String address;
     @Column(name = "description")
     private String description;
+    @Column(name = "coordinates")
+    private Point coordinates;
 
     public Order() {
     }
@@ -77,8 +79,18 @@ public class Order implements Serializable {
         return this;
     }
 
+    public Point getCoordinates() {
+        return coordinates;
+    }
+
+    public Order setCoordinates(Point coordinates) {
+        this.coordinates = coordinates;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
@@ -86,11 +98,12 @@ public class Order implements Serializable {
                 Objects.equals(customer, order.customer) &&
                 Objects.equals(executor, order.executor) &&
                 Objects.equals(address, order.address) &&
-                Objects.equals(description, order.description);
+                Objects.equals(description, order.description) &&
+                Objects.equals(coordinates, order.coordinates);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, customer, executor, address, description);
+        return Objects.hash(id, customer, executor, address, description, coordinates);
     }
 }

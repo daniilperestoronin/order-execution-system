@@ -20,25 +20,25 @@ public class ClientController {
 
     @GetMapping("/{id}")
     @ResponseBody
-    public Client getClientById(@PathVariable Long id){
+    public Client getClientById(@PathVariable Long id) {
         return clientService.retrieve(id);
     }
 
     @PostMapping("/")
     @ResponseBody
-    public void createClient(@RequestBody Client client){
+    public void createClient(@RequestBody Client client) {
         clientService.create(client);
     }
 
     @PutMapping("/")
     @ResponseBody
-    public void updateClientById(@RequestBody Client client){
+    public void updateClientById(@RequestBody Client client) {
         clientService.update(client);
     }
 
     @DeleteMapping("/{id}")
     @ResponseBody
-    public void deleteClient(@PathVariable Long id){
+    public void deleteClient(@PathVariable Long id) {
         clientService.delete(id);
     }
 }
