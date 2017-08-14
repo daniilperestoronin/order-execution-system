@@ -1,6 +1,7 @@
 package com.ordersserver.domainobjects.client;
 
 import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.Point;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,8 +24,8 @@ public class Client implements Serializable{
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private PersonalInformation personalInformation;
-//    @Column(columnDefinition = "coordinates")
-//    private Geometry coordinates;
+    @Column(name = "coordinates")
+    private Point coordinates;
 
     public Client() {
     }
@@ -56,6 +57,15 @@ public class Client implements Serializable{
         return this;
     }
 
+    public Point getCoordinates() {
+        return coordinates;
+    }
+
+    public Client setCoordinates(Point coordinates) {
+        this.coordinates = coordinates;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,11 +73,12 @@ public class Client implements Serializable{
         Client client = (Client) o;
         return Objects.equals(id, client.id) &&
                 clientType == client.clientType &&
-                Objects.equals(personalInformation, client.personalInformation);
+                Objects.equals(personalInformation, client.personalInformation) &&
+                Objects.equals(coordinates, client.coordinates);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, clientType, personalInformation);
+        return Objects.hash(id, clientType, personalInformation, coordinates);
     }
 }
