@@ -7,7 +7,7 @@ import com.orderexecution.authentication.domainobjects.User;
  */
 public interface TokenRepository {
 
-    boolean checkToken(String token);
+    User checkToken(String token);
 
     void addToken(String token, User user);
 }
