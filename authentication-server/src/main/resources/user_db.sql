@@ -9,7 +9,7 @@ CREATE TABLE users (
 	first_name VARCHAR(64) NOT NULL,
     last_name VARCHAR(64) NOT NULL,
     middle_name VARCHAR(64),
-    client_type CLIENT_TYPE NOT NULL,
+    user_type CLIENT_TYPE NOT NULL,
     identifier VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL);
 

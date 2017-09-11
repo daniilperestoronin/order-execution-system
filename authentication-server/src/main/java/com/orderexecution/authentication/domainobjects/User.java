@@ -1,76 +1,97 @@
 package com.orderexecution.authentication.domainobjects;
 
-import org.hibernate.annotations.CreationTimestamp;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author Perestoronin Daniil
  */
 
 @Entity
-public class User {
+@Table(name = "users")
+public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
-    private String email;
+    @Column(name = "middle_name")
+    private String middleName;
+    @Column(name = "user_type")
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
+    @Column(name = "identifier")
+    private String identifier;
+    @Column(name = "password")
     private String password;
 
-    @CreationTimestamp
-    private Date created;
-
-    public Long getUserId() {
-        return userId;
+    public User() {
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public Long getId() {
+        return id;
+    }
+
+    public User setId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public User setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public User setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMiddleName() {
+        return middleName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public User setMiddleName(String middleName) {
+        this.middleName = middleName;
+        return this;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public User setUserType(UserType userType) {
+        this.userType = userType;
+        return this;
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public User setIdentifier(String identifier) {
+        this.identifier = identifier;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public User setPassword(String password) {
         this.password = password;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
+        return this;
     }
 }
