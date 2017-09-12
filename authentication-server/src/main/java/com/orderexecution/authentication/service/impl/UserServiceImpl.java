@@ -27,10 +27,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String login(User user) throws ServletException {
-        if (user.getEmail() == null || user.getPassword() == null) {
+        if (user.getIdentifier() == null || user.getPassword() == null) {
             throw new ServletException("Please fill in username and password");
         }
-        String email = user.getEmail();
+        String email = user.getIdentifier();
         String password = user.getPassword();
         User authUser = findByEmail(email);
         if (authUser == null) {

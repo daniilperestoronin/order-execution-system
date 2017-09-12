@@ -26,7 +26,7 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public String generateToken(User user) {
-        String token = Jwts.builder().setSubject(user.getEmail()).claim("roles", "user").setIssuedAt(new Date())
+        String token = Jwts.builder().setSubject(user.getIdentifier()).claim("roles", "user").setIssuedAt(new Date())
                 .signWith(SignatureAlgorithm.HS256, "secretkey").compact();
         tokenRepository.addToken(token, user);
         return token;
