@@ -40,7 +40,15 @@ public class ClientRepositoryTest {
 
     @Test
     public void testSaveClient() {
-        assertEquals(clientRepository.save(client), client);
+        Client testClient = clientRepository.save(client);
+        testClient
+                .setId(client.getId());
+        testClient
+                .getPersonalInformation()
+                .setId(client
+                        .getPersonalInformation()
+                        .getId());
+        assertEquals(testClient, client);
     }
 
     @Test
@@ -51,8 +59,8 @@ public class ClientRepositoryTest {
 
     @Test
     public void testDeleteClient() {
-        clientRepository.save(client);
-        clientRepository.delete(client.getId());
+        Client testClient = clientRepository.save(client);
+        clientRepository.delete(testClient.getId());
     }
 
     @Test
