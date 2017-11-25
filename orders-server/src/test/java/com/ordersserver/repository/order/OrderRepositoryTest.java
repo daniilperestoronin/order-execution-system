@@ -94,8 +94,8 @@ public class OrderRepositoryTest {
     public void testDeleteClient() {
         clientRepository.save(customer);
         clientRepository.save(executor);
-        orderRepository.save(order);
-        clientRepository.delete(order.getId());
+        Order testOrder = orderRepository.save(order);
+        clientRepository.delete(testOrder.getId());
     }
 
     @Test
